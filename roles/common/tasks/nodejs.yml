@@ -1,3 +1,11 @@
-- name: demo
-  debug:
-    msg: nodejs
+- name: Configure NodeJs Repo
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: App Pre-requisites
+  ansible.builtin.import_tasks:
+    file: app-prereq.yaml
