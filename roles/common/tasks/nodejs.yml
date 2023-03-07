@@ -8,4 +8,12 @@
 
 - name: App Pre-requisites
   ansible.builtin.import_tasks:
-    file: app-prereq.yaml
+    file: app-prereq.yml
+
+- name: Install node.js dependencies
+  community.general.npm:
+    path: /app
+
+- name: Schema Setup
+  ansible.builtin.import_tasks:
+    file: schema-setup.yml
