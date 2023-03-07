@@ -1,3 +1,22 @@
-- name: Print mysql
-  debug:
-    msg: mysql
+- name: Copy the repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Disable mysql 8 file
+  ansible.builtin.shell: dnf module disable mysql -y
+
+- name: Install MySQL Server 5.7
+  ansible.builtin.yum:
+    src: mysql-community-server
+    dest: started
+
+- name: Start MySQL service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Set root password
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass RoboShop@1
+
