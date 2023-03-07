@@ -1,3 +1,21 @@
-- name: Print frontend
-  debug:
-    msg: frontend
+- name: Setup Mongodb Repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+
+- name: Replace listner address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Start Mongod Service
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
+    enabled: yes
