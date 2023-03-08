@@ -1,2 +1,32 @@
+- name: Mongodb schema
+  when: schema_type == "mongo"
+  blocks:
+    - name: Copy Mongodb repo file
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
 
+    - name: Install MongoDb Clinet
+      ansible.builtin.yum:
+        name: mongodb-org-shell
+        state: installed
+
+    - name: Load Schema
+      ansible.builtin.shell: mongo --host mongodb-dev.devopsb71.live </app/schema/{{ component }}.js
+
+- name: MySQL schema
+  when: schema_type == "mysql"
+  blocks:
+    - name: Copy MySQL repo file
+      ansible.builtin.copy:
+        src: mysql.repo
+        dest: /etc/yum.repos.d/mysql.repo
+
+    - name: Install MySQL
+      ansible.builtin.yum:
+        name: mysql
+        state: installed
+
+    - name: Load Schema
+      ansible.builtin.shell: mysql -h mysql-dev.devopsb71.live -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
 
