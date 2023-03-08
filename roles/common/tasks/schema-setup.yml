@@ -1,4 +1,4 @@
-- name: Mongodb schema
+- name: MongoDB Schema
   when: schema_type == "mongo"
   blocks:
     - name: Copy Mongodb repo file
