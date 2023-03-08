@@ -17,11 +17,6 @@
 - name: MySQL schema
   when: schema_type == "mysql"
   blocks:
-    - name: Copy MySQL repo file
-      ansible.builtin.copy:
-        src: mysql.repo
-        dest: /etc/yum.repos.d/mysql.repo
-
     - name: Install MySQL
       ansible.builtin.yum:
         name: mysql
