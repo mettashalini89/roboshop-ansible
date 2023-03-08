@@ -1,6 +1,6 @@
 - name: Mongo Schema
   when: schema_type == "mongo"
-  blocks:
+  block:
     - name: Copy Mongodb repo file
       ansible.builtin.copy:
         src: mongo.repo
@@ -16,7 +16,7 @@
 
 - name: MySQL schema
   when: schema_type == "mysql"
-  blocks:
+  block:
     - name: Install MySQL
       ansible.builtin.yum:
         name: mysql
