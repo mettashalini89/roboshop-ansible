@@ -1,0 +1,3 @@
+- name: Prometheus test
+  debug:
+    msg: test
