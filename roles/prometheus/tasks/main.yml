@@ -1,4 +1,9 @@
-- name: Prometheus test server
+- name: Prometheus server
   ansible.builtin.import_tasks:
     file: servers.yml
   when: prometheus_server
+
+- name: Prometheus Node Exporter
+  ansible.builtin.import_tasks:
+    file: exporter.yml
+  when: node_exporter
