@@ -1,1 +1,3 @@
 component: redis
+
+node_exporter: false

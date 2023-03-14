@@ -1,1 +1,3 @@
 component: rabbitmq
+
+node_exporter: false

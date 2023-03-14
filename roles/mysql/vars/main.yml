@@ -1,1 +1,2 @@
 component: mysql
+node_exporter: false
