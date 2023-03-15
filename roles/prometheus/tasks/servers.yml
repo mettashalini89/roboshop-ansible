@@ -6,12 +6,8 @@
 - name: Alert rules Config
   ansible.builtin.template:
     src: alerts.yml
-    dest: /opt/prometheus/alerts.yml
-
-- name: Service Down Alerts Config
-  ansible.builtin.template:
-    src: service-down-alerts.yml
-    dest: /opt/prometheus/service-down-alerts.yml
+    dest: /opt/prometheus/{{ item }}
+    loop: "{{ alert_files }}"
 
 - name: Restart Prometheus service
   ansible.builtin.systemd:
