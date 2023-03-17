@@ -9,4 +9,4 @@
     state: restarted
 
 - name: Check logstash is started or not
-  ansible.builtin.shell: sleep 30s; netstat -lntp | grep 5044
+  ansible.builtin.shell: sleep 60s; netstat -lntp | grep 5044
